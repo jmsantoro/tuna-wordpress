@@ -1,0 +1,23 @@
+
+services:
+  db:
+    image: mariadb:10.5
+    volumes:
+      - /home/e18680/dev/data/tuna:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: SuperSecret123!
+      MYSQL_DATABASE: wp_tuna_org
+      MYSQL_USER: utahnord_utahnordic
+      MYSQL_PASSWORD: M*@&b0yATveAVg1
+  
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - UPLOAD_LIMIT=300M
